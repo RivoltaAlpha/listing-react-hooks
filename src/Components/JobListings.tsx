@@ -1,23 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import type { FilterCategory, FilterState, Job, JobListingsProps } from '../types/types';
 import MainGrid from './MainGrid';
-import type { FilterCategory, FilterState, Job } from '../types/types';
 import Header from './Header';
 
-interface JobListingsProps {
-  jobsData?: Job[];
-}
-
-const JobListings: React.FC<JobListingsProps> = ({ jobsData = [] }) => {
+const JobListings = ({ jobsData = [] }: JobListingsProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
-  const [selectedFilters, setSelectedFilters] = useState<FilterState>({
-    role: [],
-    level: [],
-    languages: [],
-    tools: []
-  });
+  const [selectedFilters, setSelectedFilters] = useState<FilterState>({role: [], level: [], languages: [], tools: []});
 
-  // Filter jobs whenever search term, filters, or job data changes
+  // Filter jobs 
   useEffect(() => {
     const filtered = jobsData.filter((job: Job) => {
       // Search filter

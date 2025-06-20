@@ -33,3 +33,7 @@ export interface MainGridProps {
   selectedFilters: FilterState;
   handleTagClick: (tag: string, category: FilterCategory) => void;
 }
+
+export interface JobListingsProps {
+  jobsData?: Job[];
+}
