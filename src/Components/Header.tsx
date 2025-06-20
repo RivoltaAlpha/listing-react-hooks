@@ -26,9 +26,14 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header 
-      className="bg-teal-500 text-center py-5 px-5 mx-1 mt-1 rounded-sm relative overflow-hidden header-bg"
-    >
+        <header
+        className="bg-teal-300 text-center py-5 px-5 rounded-lg relative overflow-hidden"
+        style={{
+            backgroundImage: "url('./images/bg-header-desktop.svg')",
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
+        }}
+        >
       <div className="relative z-10">
         <h1 className="text-2xl font-bold text-black mb-4">Job Listings</h1>
         <div className="flex flex-col md:flex-row items-center justify-center gap-4">
@@ -48,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({
             </button>
           )}
         </div>
-        
+
         {/* Active Filters */}
         {getAllActiveFilters().length > 0 && (
           <div className="mt-4 flex flex-wrap justify-center gap-2">
