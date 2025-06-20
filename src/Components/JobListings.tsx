@@ -18,14 +18,6 @@ const JobListings: React.FC<JobListingsProps> = ({ jobsData = [] }) => {
     tools: []
   });
 
-  // Filter categories
-  const filterCategories = {
-    role: ['Frontend', 'Backend', 'Fullstack'],
-    level: ['Junior', 'Midweight', 'Senior'],
-    languages: ['Python', 'Ruby', 'JavaScript', 'HTML', 'CSS'],
-    tools: ['React', 'Sass', 'Vue', 'Django', 'RoR']
-  };
-
   // Filter jobs whenever search term, filters, or job data changes
   useEffect(() => {
     const filtered = jobsData.filter((job: Job) => {
