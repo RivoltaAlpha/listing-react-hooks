@@ -1,38 +1,8 @@
-import React from 'react';
-import type { FilterCategory, FilterState } from '../types/types';
+import type { Job, MainGridProps } from '../types/types';
 
-// Job interface
-export interface Job {
-  id: number;
-  company: string;
-  logo: string;
-  new: boolean;
-  featured: boolean;
-  position: string;
-  role: string;
-  level: string;
-  postedAt: string;
-  contract: string;
-  location: string;
-  languages: string[];
-  tools: string[];
-}
-
-interface MainGridProps {
-  filteredJobs: Job[];
-  totalJobs: number;
-  selectedFilters: FilterState;
-  handleTagClick: (tag: string, category: FilterCategory) => void;
-}
-
-const MainGrid: React.FC<MainGridProps> = ({
-  filteredJobs,
-  totalJobs,
-  selectedFilters,
-  handleTagClick
-}) => {
+const MainGrid = ({filteredJobs, totalJobs, selectedFilters,handleTagClick}:MainGridProps ) => {
   return (
-    <main className="flex justify-center p-2.5">
+    <main className="flex justify-center p-5">
       <div className="w-full max-w-6xl">
         {filteredJobs.length === 0 ? (
           <div className="text-center py-12">
@@ -48,11 +18,10 @@ const MainGrid: React.FC<MainGridProps> = ({
             {filteredJobs.map((job: Job) => (
               <div
                 key={job.id}
-                className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 p-5 border-l-4 ${
+                className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 p-5 border-l-4 h-44 ${
                   job.featured ? 'border-teal-400' : 'border-gray-200'
                 } flex flex-col md:flex-row items-start md:items-center gap-4`}
               >
-                {/* Company Logo */}
                 <div className="flex-shrink-0">
                   <img
                     src={job.logo}
@@ -61,7 +30,6 @@ const MainGrid: React.FC<MainGridProps> = ({
                   />
                 </div>
 
-                {/* Job Content */}
                 <div className="flex-grow">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <h3 className="text-teal-600 font-medium text-sm md:text-base">
@@ -92,19 +60,21 @@ const MainGrid: React.FC<MainGridProps> = ({
                   </div>
                 </div>
 
-                {/* Tags */}
+                {/* buttons */}
                 <div className="flex flex-wrap gap-2 w-full md:w-auto">
                   <button
+                    type='button'
                     onClick={() => handleTagClick(job.role, 'role')}
                     className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-                      selectedFilters.role.includes(job.role)
+                        selectedFilters.role.includes(job.role)
                         ? 'bg-teal-500 text-white'
                         : 'bg-teal-100 text-teal-600 hover:bg-teal-500 hover:text-white'
                     }`}
-                  >
+                    >
                     {job.role}
                   </button>
                   <button
+                    type='button'
                     onClick={() => handleTagClick(job.level, 'level')}
                     className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
                       selectedFilters.level.includes(job.level)
@@ -115,7 +85,8 @@ const MainGrid: React.FC<MainGridProps> = ({
                     {job.level}
                   </button>
                   {job.languages.map((lang: string) => (
-                    <button
+                      <button
+                      type='button'
                       key={lang}
                       onClick={() => handleTagClick(lang, 'languages')}
                       className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
@@ -128,7 +99,8 @@ const MainGrid: React.FC<MainGridProps> = ({
                     </button>
                   ))}
                   {job.tools.map((tool: string) => (
-                    <button
+                      <button
+                      type='button'
                       key={tool}
                       onClick={() => handleTagClick(tool, 'tools')}
                       className={`px-3 py-1 rounded text-sm font-medium transition-colors ${

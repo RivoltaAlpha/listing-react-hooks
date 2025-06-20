@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MainGrid from './MainGrid';
-import type { Job } from './MainGrid';
-import type { FilterCategory, FilterState } from '../types/types';
+import type { FilterCategory, FilterState, Job } from '../types/types';
 import Header from './Header';
 
 interface JobListingsProps {
