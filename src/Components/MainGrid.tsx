@@ -2,7 +2,7 @@ import type { Job, MainGridProps } from '../types/types';
 
 const MainGrid = ({filteredJobs, totalJobs, selectedFilters,handleTagClick}:MainGridProps ) => {
   return (
-    <main className="flex justify-center p-5">
+    <main className="flex justify-center p-5 mt-10">
       <div className="w-full max-w-6xl">
         {filteredJobs.length === 0 ? (
           <div className="text-center py-12">
@@ -18,7 +18,7 @@ const MainGrid = ({filteredJobs, totalJobs, selectedFilters,handleTagClick}:Main
             {filteredJobs.map((job: Job) => (
               <div
                 key={job.id}
-                className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 p-5 border-l-4 h-44 ${
+                className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 p-5 border-l-4 h-40 ${
                   job.featured ? 'border-teal-400' : 'border-gray-200'
                 } flex flex-col md:flex-row items-start md:items-center gap-4`}
               >
