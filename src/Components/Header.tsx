@@ -1,29 +1,22 @@
-import React from 'react';
 import type { FilterCategory, HeaderProps } from '../types/types';
 
-const Header: React.FC<HeaderProps> = ({
-  searchTerm,
-  setSearchTerm,
-  selectedFilters,
-  removeFilter,
-  clearAllFilters
-}) => {
-  // Get all active filters as flat array
-  const getAllActiveFilters = (): Array<{ tag: string; category: FilterCategory }> => {
-    const activeFilters: Array<{ tag: string; category: FilterCategory }> = [];
-    
-    Object.entries(selectedFilters).forEach(([category, tags]) => {
-    (tags as string[]).forEach((tag: string): void => {
-      activeFilters.push({ tag, category: category as FilterCategory });
-    });
-    });
-    
-    return activeFilters;
+const Header = ({ searchTerm, setSearchTerm, selectedFilters, removeFilter,clearAllFilters }: HeaderProps) => {
+    const getAllActiveFilters = (): Array<{tag:string; category:FilterCategory }> => {
+        const activeFilters: Array<{tag:string; category:FilterCategory }> = []
+
+        Object.entries(selectedFilters).forEach(([category, tags]) => {
+            (tags as string[]).forEach((tag: string):void => {
+                activeFilters.push({tag, category: category as FilterCategory});
+            });
+        });
+        return activeFilters;
   };
 
-  const hasActiveFilters = (): boolean => {
-    return Object.values(selectedFilters).some(filters => filters.length > 0) || searchTerm !== '';
-  };
+    const hasActiveFilters = (): boolean => {
+        return Object.values(selectedFilters).some(filters => filters.length > 0) || searchTerm !== '';
+    };
+
+
 
   return (
         <header
